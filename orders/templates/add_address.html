@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block context %}
+
+
+<center>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+
+    
+    </form>
+    <a href="{% url 'address_list' %}">select ur address</a>
+</center>
+{% endblock %}

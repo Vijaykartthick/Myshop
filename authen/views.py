@@ -80,27 +80,6 @@ def profile(request):
     return render(request, "profile.html", {"profile": profile})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def logout_(request):
     logout(request)
     return redirect('login_')

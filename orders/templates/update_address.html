@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block context %}
+
+
+<!-- <center>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="">fullname:</label>
+        <input type="text" name="fullname" value="{{address.fullname}}"> <br><br>
+
+        <label for="">mobile:</label>
+        <input type="text" name="mobile" value="{{address.mobile}}"> <br><br>
+
+        <label for="">address_line :</label>
+        <input type="text" name="address_line" value="{{address.address_line}}"><br><br>
+
+        <label for="">city :</label>
+        <input type="text" name="city" value="{{address.city}}" id=""><br><br>
+
+        <label for="">state :</label>
+        <input type="text" name="state" value="{{address.state}}" id=""><br> <br>
+
+        <label for="">pincode:</label>
+        <input type="text" name="pincode" value="{{address.pincode}}" id=""><br><br>
+
+        <button type="submit">Submit</button>
+    
+    </form>
+</center> -->
+
+<center>
+     <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+
+    </form>
+</center>
+{% endblock %}

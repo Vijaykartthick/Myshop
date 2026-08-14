@@ -11,5 +11,5 @@ class address(models.Model):
     state = models.CharField(max_length=80)
     pincode = models.CharField(max_length=10)
     is_default = models.BooleanField(default = False)
-    created_at = models.DateTimeField(auto_created=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 

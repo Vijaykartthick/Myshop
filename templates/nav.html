@@ -311,12 +311,16 @@
                 </a>
             </li>
 
-            <li><a href="">Address</a></li>
+            <li><a href="{% url 'add_address' %}">Address</a></li>
 
             <li>
                 <a href="{% url 'cart' %}">
                     Cart
                 </a>
+            </li>
+
+            <li>
+                <a href="">Orders</a>
             </li>
 
             <li>
@@ -331,11 +335,7 @@
                 </a>
             </li>
 
-            <li>
-                <a href="{% url 'logout_' %}" class="logout">
-                    Logout
-                </a>
-            </li>
+            
 
             <li>
                 <a href="{% url 'profile' %}">
@@ -346,6 +346,11 @@
             <li>
                 <a href="">
                     Contact Us
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'logout_' %}" class="logout">
+                    Logout
                 </a>
             </li>
 
