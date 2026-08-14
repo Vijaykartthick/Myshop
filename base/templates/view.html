@@ -1,0 +1,194 @@
+{% extends 'main.html' %}
+
+{% block links %}
+<style>
+   .product-page {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.product-details {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    background: white;
+}
+
+.product-image {
+    width: 350px;
+    height: 350px;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+.product-info {
+    flex: 1;
+    text-align: left;
+}
+
+.product-info h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.product-info h3 {
+    color: #555;
+    line-height: 1.6;
+}
+
+.price {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.available {
+    color: green;
+}
+
+.out-stock {
+    color: red;
+}
+
+.cart-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.cart-btn:hover {
+    background: #333;
+}
+
+/* Related Products */
+
+.related-section {
+    margin-top: 50px;
+}
+
+.related-section h1 {
+    margin-bottom: 25px;
+}
+
+.related-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.related-card {
+    width: 220px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+    background: white;
+    transition: 0.3s;
+}
+
+.related-card:hover {
+    transform: translateY(-5px);
+}
+
+.related-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.related-card h2 {
+    font-size: 20px;
+}
+
+.related-card p {
+    color: #555;
+}
+</style>
+    {% endblock %}
+
+{% block context %}
+
+<div class="product-page">
+
+    <!-- Product Details -->
+    <div class="product-details">
+
+        <img class="product-image"
+             src="{{ product.pimage.url }}"
+             alt="{{ product.pname }}">
+
+        <div class="product-info">
+
+            <h1>{{ product.pname }}</h1>
+
+            <h3>{{ product.pdescription }}</h3>
+
+            <div class="price">
+                ₹{{ product.price }}
+            </div>
+
+            {% if product.is_available %}
+                <h3 class="available">Available ✅</h3>
+            {% else %}
+                <h3 class="out-stock">Out of Stock ❌</h3>
+            {% endif %}
+
+            <h3>Stock: {{ product.stock }}</h3>
+
+            {% if product.is_available and product.stock > 0 %}
+                <a class="cart-btn"
+                   href="{% url 'add_cart' product.id %}">
+                    Add to Cart 🛒
+                </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- Related Products -->
+
+    <div class="related-section">
+
+        <h1>Related Products</h1>
+
+        <div class="related-products">
+
+            {% for i in category %}
+
+                <div class="related-card">
+
+                    <img src="{{ i.pimage.url }}"
+                         alt="{{ i.pname }}">
+
+                    <h2>{{ i.pname }}</h2>
+
+                    <p>{{ i.pdescription }}</p>
+
+                    <h3>₹{{ i.price }}</h3>
+
+                    <a href="{% url 'details' i.id %}">
+                        View Details
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

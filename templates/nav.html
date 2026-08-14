@@ -1,0 +1,356 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+        width: 100%;
+        padding: 18px 55px;
+
+        background: rgba(20, 20, 30, 0.96);
+
+        box-shadow:
+            0 8px 30px rgba(0, 0, 0, 0.25);
+
+        position: relative;
+        z-index: 1000;
+    }
+
+
+    /* Gradient line at bottom */
+
+    .navbar::after {
+        content: "";
+
+        position: absolute;
+
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 4px;
+
+        background: linear-gradient(
+            90deg,
+            #6a11cb,
+            #2575fc,
+            #00c6ff,
+            #6a11cb
+        );
+
+        background-size: 300% 100%;
+
+        animation: gradientMove 5s linear infinite;
+    }
+
+
+    /* =========================
+       NAV
+    ========================= */
+
+    .navbar nav {
+        max-width: 1400px;
+
+        margin: auto;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+    }
+
+
+    /* =========================
+       LOGO
+    ========================= */
+
+    .logo {
+        color: white;
+
+        font-size: 30px;
+
+        font-weight: 900;
+
+        text-decoration: none;
+
+        letter-spacing: 1px;
+
+        position: relative;
+
+        transition: 0.3s;
+    }
+
+
+    .logo::after {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        bottom: -6px;
+
+        width: 0;
+        height: 3px;
+
+        border-radius: 10px;
+
+        background: linear-gradient(
+            90deg,
+            #6a11cb,
+            #2575fc
+        );
+
+        transition: 0.3s;
+    }
+
+
+    .logo:hover {
+        transform: translateY(-2px);
+    }
+
+
+    .logo:hover::after {
+        width: 100%;
+    }
+
+
+    /* =========================
+       NAV LINKS
+    ========================= */
+
+    .nav-links {
+        display: flex;
+
+        align-items: center;
+
+        list-style: none;
+
+        gap: 8px;
+    }
+
+
+    .nav-links li {
+        position: relative;
+    }
+
+
+    .nav-links a {
+        display: block;
+
+        padding: 12px 17px;
+
+        color: #eeeeee;
+
+        text-decoration: none;
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        border-radius: 10px;
+
+        transition: all 0.3s ease;
+    }
+
+
+    /* =========================
+       HOVER EFFECT
+    ========================= */
+
+    .nav-links a:hover {
+        color: white;
+
+        background: linear-gradient(
+            135deg,
+            rgba(106, 17, 203, 0.8),
+            rgba(37, 117, 252, 0.8)
+        );
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 8px 20px rgba(37, 117, 252, 0.25);
+    }
+
+
+    /* =========================
+       ACTIVE EFFECT
+    ========================= */
+
+    .nav-links a:active {
+        transform: scale(0.96);
+    }
+
+
+    /* =========================
+       CART
+    ========================= */
+
+    .nav-links li:nth-child(2) a {
+        position: relative;
+    }
+
+
+    /* =========================
+       LOGOUT
+    ========================= */
+
+    .logout {
+        color: #ff6b6b !important;
+    }
+
+
+    .logout:hover {
+        background: linear-gradient(
+            135deg,
+            #ff416c,
+            #ff4b2b
+        ) !important;
+
+        color: white !important;
+
+        box-shadow:
+            0 8px 20px rgba(255, 65, 108, 0.30) !important;
+    }
+
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    @keyframes gradientMove {
+
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+        .navbar {
+            padding: 18px 25px;
+        }
+
+        .navbar nav {
+            flex-direction: column;
+
+            gap: 20px;
+        }
+
+        .nav-links {
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 5px;
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .logo {
+            font-size: 26px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+
+            padding: 10px 12px;
+        }
+
+    }
+</style>
+
+
+<div class="navbar">
+
+    <nav>
+
+        <!-- LOGO -->
+
+        <a href="{% url 'home' %}" class="logo">
+            MyShop
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+            </li>
+
+            <li><a href="">Address</a></li>
+
+            <li>
+                <a href="{% url 'cart' %}">
+                    Cart
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'register' %}">
+                    Register
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'login_' %}">
+                    Login
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'logout_' %}" class="logout">
+                    Logout
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'profile' %}">
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    Contact Us
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</div>

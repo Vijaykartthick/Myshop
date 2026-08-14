@@ -1,0 +1,266 @@
+{% extends 'main.html' %}
+
+
+{% block links %}
+<style>
+    /* ===== REGISTER PAGE ===== */
+
+    .register-container {
+        width: 520px;
+        max-width: 90%;
+        margin: 70px auto;
+        padding: 45px 50px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 25px;
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.25),
+            0 10px 25px rgba(0, 0, 0, 0.10);
+        position: relative;
+        overflow: hidden;
+        animation: slideUp 0.7s ease;
+    }
+
+    /* Top decorative line */
+
+    .register-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 7px;
+        background: linear-gradient(
+            90deg,
+            #6a11cb,
+            #2575fc,
+            #00c6ff
+        );
+    }
+
+    /* Heading */
+
+    .register-container h1 {
+        text-align: center;
+        font-size: 38px;
+        font-weight: 800;
+        margin-bottom: 35px;
+
+        background: linear-gradient(
+            90deg,
+            #6a11cb,
+            #2575fc
+        );
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Form group */
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 9px;
+        color: #333;
+    }
+
+    /* Inputs */
+
+    .form-group input {
+        width: 100%;
+        height: 55px;
+        padding: 0 18px;
+
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+
+        font-size: 16px;
+        color: #333;
+
+        background: #f9f9f9;
+
+        transition: all 0.3s ease;
+    }
+
+    .form-group input::placeholder {
+        color: #999;
+    }
+
+    .form-group input:hover {
+        border-color: #b5b5b5;
+        background: #fff;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #2575fc;
+        background: #fff;
+
+        box-shadow:
+            0 0 0 4px rgba(37, 117, 252, 0.12),
+            0 5px 15px rgba(37, 117, 252, 0.10);
+
+        transform: translateY(-2px);
+    }
+
+    /* Register button */
+
+    .register-container button {
+        width: 100%;
+        height: 58px;
+
+        margin-top: 10px;
+
+        border: none;
+        border-radius: 12px;
+
+        background: linear-gradient(
+            135deg,
+            #6a11cb,
+            #2575fc
+        );
+
+        color: white;
+
+        font-size: 18px;
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: all 0.3s ease;
+
+        box-shadow:
+            0 10px 25px rgba(37, 117, 252, 0.3);
+    }
+
+    .register-container button:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 15px 30px rgba(37, 117, 252, 0.4);
+
+        background: linear-gradient(
+            135deg,
+            #2575fc,
+            #6a11cb
+        );
+    }
+
+    .register-container button:active {
+        transform: translateY(0);
+    }
+
+    /* Login text */
+
+    .register-container p {
+        text-align: center;
+        margin-top: 28px;
+
+        color: #666;
+        font-size: 15px;
+    }
+
+    .register-container p a {
+        color: #2575fc;
+        font-weight: 700;
+        text-decoration: none;
+        margin-left: 5px;
+
+        transition: 0.3s;
+    }
+
+    .register-container p a:hover {
+        color: #6a11cb;
+        text-decoration: underline;
+    }
+
+    /* Animation */
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ===== RESPONSIVE ===== */
+
+    @media (max-width: 600px) {
+
+        .register-container {
+            width: 92%;
+            padding: 35px 25px;
+            margin: 40px auto;
+        }
+
+        .register-container h1 {
+            font-size: 30px;
+        }
+
+        .form-group input {
+            height: 50px;
+        }
+
+        .register-container button {
+            height: 52px;
+        }
+    }
+</style>
+{% endblock %}
+
+
+{% block context %}
+{% if messages %}
+{% for i in messages %}
+<h1>{{i}}</h1>
+{% endfor %}
+{% endif %}
+<div class="register-container">
+
+    <h1>Register</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter username" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password" required>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" placeholder="Confirm password" required>
+        </div>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <p>
+        Already have an account?
+        <a href="{% url 'login_' %}">Login</a>
+    </p>
+
+</div>
+
+{% endblock %}

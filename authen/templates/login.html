@@ -1,0 +1,347 @@
+{% extends 'main.html' %}
+
+{% block links %}
+<style>
+
+    /* ===== LOGIN CONTAINER ===== */
+
+    .login-container {
+        width: 500px;
+        max-width: 90%;
+        margin: 80px auto;
+        padding: 50px;
+
+        background: rgba(255, 255, 255, 0.97);
+
+        border-radius: 25px;
+
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.25),
+            0 10px 25px rgba(0, 0, 0, 0.10);
+
+        position: relative;
+        overflow: hidden;
+
+        animation: loginAnimation 0.7s ease;
+    }
+
+
+    /* TOP GRADIENT */
+
+    .login-container::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 7px;
+
+        background: linear-gradient(
+            90deg,
+            #6a11cb,
+            #2575fc,
+            #00c6ff
+        );
+    }
+
+
+    /* HEADING */
+
+    .login-container h1 {
+        text-align: center;
+
+        font-size: 40px;
+        font-weight: 800;
+
+        margin-bottom: 40px;
+
+        background: linear-gradient(
+            90deg,
+            #6a11cb,
+            #2575fc
+        );
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+
+    /* FORM GROUP */
+
+    .login-form-group {
+        margin-bottom: 25px;
+    }
+
+
+    .login-form-group label {
+        display: block;
+
+        margin-bottom: 10px;
+
+        font-size: 16px;
+        font-weight: 700;
+
+        color: #333;
+    }
+
+
+    /* INPUT */
+
+    .login-form-group input {
+        width: 100%;
+        height: 58px;
+
+        padding: 0 18px;
+
+        border: 2px solid #e0e0e0;
+
+        border-radius: 12px;
+
+        background: #f9f9f9;
+
+        font-size: 16px;
+
+        transition: 0.3s;
+    }
+
+
+    .login-form-group input::placeholder {
+        color: #999;
+    }
+
+
+    .login-form-group input:hover {
+        border-color: #aaa;
+
+        background: white;
+    }
+
+
+    .login-form-group input:focus {
+        outline: none;
+
+        border-color: #2575fc;
+
+        background: white;
+
+        box-shadow:
+            0 0 0 4px rgba(37, 117, 252, 0.12),
+            0 5px 15px rgba(37, 117, 252, 0.10);
+
+        transform: translateY(-2px);
+    }
+
+
+    /* LOGIN BUTTON */
+
+    .login-btn {
+        width: 100%;
+        height: 60px;
+
+        margin-top: 10px;
+
+        border: none;
+
+        border-radius: 12px;
+
+        background: linear-gradient(
+            135deg,
+            #6a11cb,
+            #2575fc
+        );
+
+        color: white;
+
+        font-size: 19px;
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+
+        box-shadow:
+            0 10px 25px rgba(37, 117, 252, 0.30);
+    }
+
+
+    .login-btn:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 15px 30px rgba(37, 117, 252, 0.40);
+
+        background: linear-gradient(
+            135deg,
+            #2575fc,
+            #6a11cb
+        );
+    }
+
+
+    .login-btn:active {
+        transform: translateY(0);
+    }
+
+
+    /* REGISTER LINK */
+
+    .register-link {
+        text-align: center;
+
+        margin-top: 30px;
+
+        color: #666;
+
+        font-size: 15px;
+    }
+
+
+    .register-link a {
+        color: #2575fc;
+
+        font-weight: 700;
+
+        text-decoration: none;
+
+        margin-left: 5px;
+
+        transition: 0.3s;
+    }
+
+
+    .register-link a:hover {
+        color: #6a11cb;
+
+        text-decoration: underline;
+    }
+
+
+    /* ANIMATION */
+
+    @keyframes loginAnimation {
+
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+        .login-container {
+            width: 92%;
+
+            padding: 35px 25px;
+
+            margin: 50px auto;
+        }
+
+        .login-container h1 {
+            font-size: 32px;
+        }
+
+        .login-form-group input {
+            height: 52px;
+        }
+
+        .login-btn {
+            height: 55px;
+        }
+
+    }
+
+</style>
+{% endblock %}
+
+
+{% block context %}
+{% if messages %}
+{% for i in messages %}
+{{i}}
+{% endfor %}
+{% endif %}
+<div class="login-container">
+
+    <h1>Login</h1>
+
+    <form action="" method="POST">
+
+        {% csrf_token %}
+
+        <!-- Username -->
+
+        <div class="login-form-group">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter your username"
+                required
+            >
+
+        </div>
+
+
+        <!-- Password -->
+
+        <div class="login-form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+        </div>
+
+
+        <!-- Login -->
+
+        <button
+            type="submit"
+            class="login-btn"
+        >
+            Login
+        </button>
+
+    </form>
+
+
+    <!-- Register -->
+
+    <div class="register-link">
+
+        Don't have an account?
+
+        <a href="{% url 'register' %}">
+            Register
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
