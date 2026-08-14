@@ -5,10 +5,6 @@
 
 <style>
 
-/* ================================
-   PROFILE PAGE
-================================ */
-
 .profile-page {
     min-height: calc(100vh - 70px);
 
@@ -21,11 +17,6 @@
     background:
         linear-gradient(135deg, #eef2ff, #f8fafc);
 }
-
-
-/* ================================
-   PROFILE CARD
-================================ */
 
 .profile-card {
 
@@ -48,9 +39,6 @@
     overflow: hidden;
 }
 
-
-/* Top decoration */
-
 .profile-card::before {
 
     content: "";
@@ -72,11 +60,6 @@
 
     z-index: 0;
 }
-
-
-/* ================================
-   PROFILE IMAGE
-================================ */
 
 .profile-image-box {
 
@@ -104,9 +87,6 @@
     box-shadow:
         0 10px 30px rgba(0, 0, 0, 0.20);
 }
-
-
-/* No photo */
 
 .no-photo {
 
@@ -137,10 +117,6 @@
 }
 
 
-/* ================================
-   USERNAME
-================================ */
-
 .username {
 
     margin-top: 15px;
@@ -161,11 +137,6 @@
 
     color: #6b7280;
 }
-
-
-/* ================================
-   STATUS
-================================ */
 
 .status {
 
@@ -200,11 +171,6 @@
 
     background: #22c55e;
 }
-
-
-/* ================================
-   DETAILS
-================================ */
 
 .profile-details {
 
@@ -266,11 +232,6 @@
     word-break: break-word;
 }
 
-
-/* ================================
-   UPDATE BUTTON
-================================ */
-
 .update-btn {
 
     display: block;
@@ -313,11 +274,6 @@
         0 12px 25px rgba(37, 99, 235, 0.35);
 
 }
-
-
-/* ================================
-   RESPONSIVE
-================================ */
 
 @media (max-width: 600px) {
 
@@ -362,11 +318,6 @@
 
     <div class="profile-card">
 
-
-        <!-- =========================
-             PROFILE PHOTO
-        ========================== -->
-
         <div class="profile-image-box">
 
             {% if profile and profile.profile %}
@@ -387,11 +338,6 @@
 
         </div>
 
-
-        <!-- =========================
-             USER INFORMATION
-        ========================== -->
-
         <h1 class="username">
             {{ request.user.username }}
         </h1>
@@ -400,10 +346,6 @@
         <p class="email">
             {{ request.user.email }}
         </p>
-
-
-        <!-- STATUS -->
-
         <div class="status">
 
             <span class="status-dot"></span>
@@ -412,16 +354,7 @@
 
         </div>
 
-
-        <!-- =========================
-             DETAILS
-        ========================== -->
-
         <div class="profile-details">
-
-
-            <!-- Username -->
-
             <div class="detail-box">
 
                 <div>
@@ -438,9 +371,6 @@
 
             </div>
 
-
-            <!-- Email -->
-
             <div class="detail-box">
 
                 <div>
@@ -456,21 +386,9 @@
                 </div>
 
             </div>
-
-
-         
-
+           
+        <a href="{% url 'update' %}" class="update-btn">
         
-
-
-        <!-- =========================
-             UPDATE PROFILE
-        ========================== -->
-
-        <a
-            href="{% url 'update' %}"
-            class="update-btn"
-        >
             ✏️ Update Profile
         </a>
 
