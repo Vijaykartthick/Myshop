@@ -133,3 +133,6 @@ MAILERS = {
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+RAZORPAY_KEY_ID = "your_test_key_id"
+RAZORPAY_KEY_SECRET = "your_test_key_secret"

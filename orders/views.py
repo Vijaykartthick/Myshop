@@ -15,7 +15,7 @@ def add_address(request):
     return render(request,'add_address.html',{'form':form})
 
 def address_list(request):
-    Address = address.objects.all()
+    Address = address.objects.filter(user = request.user)
     return render(request,'address_list.html',{'address':Address})
 
 # def update_address(request,pk):
@@ -32,18 +32,17 @@ def address_list(request):
 #     return render(request,'update_address.html',{'address':Address})
 
 def update_address(request,pk):
-        data = address.objects.get(id = pk)
-        if request.method == "POST":
-           form_data =  addressform(request.POST,instance=data)
-           if form_data.is_valid():
-               v = form_data.save(commit=False)
-               v.user = request.user
-               v.save()
-               return redirect('address_list')
-        else:
-            form = addressform(instance= data)
-
-        return render(request,'update_address.html',{'form':form})
+    data = address.objects.get(id = pk)
+    if request.method == "POST":
+            form_data =  addressform(request.POST,instance=data)
+            if form_data.is_valid():
+                v = form_data.save(commit=False)
+                v.user = request.user
+                v.save()
+                return redirect('address_list')
+            else:
+                 form = addressform(instance= data)
+    return render(request,'update_address.html',{'form':form})
 
 def delete_address(request,pk):
     data = address.objects.get(id = pk).delete()

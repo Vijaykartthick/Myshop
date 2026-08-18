@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block context %}
+<h2>address </h2>
+{{orders.status}} <br>
+{{orders.addresss.fullname}} <br>
+{{orders.addresss.mobile}} <br>
+{{orders.addresss.address_line}} <br>
+{{orders.addresss.state}} <br>
+
+<h1>products</h1>
+
+<a href="{% url 'viewdetails' %}">Viewdetails</a>
+
+
+{% endblock %}

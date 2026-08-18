@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cart
 from base.models import Product
+from orders.models import address
 from django.contrib.auth.decorators import login_required
+from cart.models import Cart
+from .models import place_order,orderItem
 
 
 def add_cart(request, pk):
@@ -67,3 +70,72 @@ def minus(request, pk):
         cart_product.delete()
 
     return redirect('cart')
+
+def checkout(request):
+    addresses = address.objects.filter(user = request.user)
+    cart_item = Cart.objects.filter(user = request.user)
+
+
+    # TA=0
+    # for i in cart:
+    #     TA+=i.total_price 
+
+    grant_total = sum(i.total_price for i in cart_item)
+    context = {
+        'cart_item':cart_item,
+        'addresses':addresses,
+        'grant_total':grant_total
+    }
+        
+
+
+    return render(request,'checkout.html',context)
+
+@login_required(login_url='login_')
+def placeorder(request):
+    if request.method == "POST":
+
+        address_id = request.POST.get('address')
+
+        if not address_id:
+            return redirect('checkout')
+
+        addresses = get_object_or_404(
+            address,
+            id=address_id,
+            user=request.user
+        )
+
+        cart_products = Cart.objects.filter(user=request.user)
+
+        if not cart_products.exists():
+            return redirect('cart')
+
+        grant_price = sum(i.total_price for i in cart_products)
+
+        order = place_order.objects.create(
+            user=request.user,
+            addresss=addresses,
+            total_amount=grant_price
+        )
+
+        for i in cart_products:
+            orderItem.objects.create(
+                order=order,
+                product=i.product,
+                price=i.product.price,
+                quantity=i.quantity
+            )
+
+        return redirect('order_succfully', order.id)
+
+    return redirect('checkout')
+
+def order_succfrully(request,pk):
+    order_products = place_order.objects.get(id=pk)
+    
+    return render(request,'order_succfully.html',{'orders':order_products,'products':products})
+
+def viewdetails(request):
+    return redirect('checkout')
+

@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.db.models import Q
+from authen.models import ProfilePic
+from django.contrib.auth.models import User
 
 
 @login_required(login_url='login_')
@@ -22,7 +24,10 @@ def home(request):
     else:
         all_data = Product.objects.filter(is_available=True)
 
-    return render(request, "home.html", {"all_data": all_data,"q": q,"cat": cat})
+    pname =ProfilePic.objects.filter(user = request.user)
+
+
+    return render(request, "home.html", {"all_data": all_data,"q": q,"cat": cat,'pname':pname})
 
 def details(request,pk):
     product = get_object_or_404(Product,id = pk)

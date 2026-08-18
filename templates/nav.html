@@ -242,6 +242,7 @@
 
     <nav>
 
+       
         <a href="{% url 'home' %}" class="logo">
             MyShop
         </a>
@@ -266,9 +267,19 @@
                 <a href="">Orders</a>
             </li>
 
+            
+            
+
             <li>
-                <a href="{% url 'register' %}">
-                    Register
+                <a href="{% url 'logout_' %}" class="logout">
+                    Logout
+                </a>
+            </li>
+
+        
+            <li>
+                <a href="">
+                    Contact Us
                 </a>
             </li>
 
@@ -278,26 +289,29 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{% url 'register' %}">
+                    Register
+                </a>
+            </li>
+
+                <li><a href="{% url 'profile' %}"> 
+                {% with pname=request.user.profilepic_set.first %}
+           
+                <img src="{{ pname.profile.url }}"
+                     alt="Profile"
+                     class="nav-profile" style="height: 50px; width: 50px; border-radius: 100%;">
+          
+                    
+          
+        {% endwith %}
+    </a></li>
+
             
 
-            <li>
-                <a href="{% url 'profile' %}">
-                    Profile
-                </a>
-            </li>
-
-            <li>
-                <a href="">
-                    Contact Us
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'logout_' %}" class="logout">
-                    Logout
-                </a>
-            </li>
 
         </ul>
+      
 
     </nav>
 

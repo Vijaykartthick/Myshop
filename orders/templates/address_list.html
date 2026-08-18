@@ -1,24 +1,184 @@
 {% extends 'main.html' %}
 
+{% block links %}
+<style>
+    .address-page {
+        background: #f1f3f6;
+        min-height: 90vh;
+        padding: 40px 20px;
+    }
+
+    .address-title {
+        max-width: 800px;
+        margin: 0 auto 20px;
+        font-size: 24px;
+        color: #212121;
+        text-align: left;
+    }
+
+    .address-card {
+        max-width: 800px;
+        margin: 0 auto 20px;
+        background: white;
+        padding: 22px 25px;
+        border-radius: 4px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        text-align: left;
+        border-left: 4px solid #2874f0;
+    }
+
+    .address-card h2 {
+        margin: 0 0 8px;
+        font-size: 18px;
+        color: #212121;
+    }
+
+    .address-card h3 {
+        margin: 15px 0 8px;
+        font-size: 15px;
+        color: #333;
+        font-weight: normal;
+        line-height: 1.5;
+    }
+
+    .address-card h4 {
+        display: inline-block;
+        margin: 3px 15px 3px 0;
+        font-size: 14px;
+        color: #555;
+        font-weight: normal;
+    }
+
+    .address-card h5 {
+        margin: 10px 0;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .address-card h6 {
+        margin: 12px 0;
+        color: #999;
+        font-size: 11px;
+        font-weight: normal;
+    }
+
+    .address-actions {
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+        margin-top: 15px;
+    }
+
+    .update-btn,
+    .delete-btn {
+        display: inline-block;
+        padding: 9px 18px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        margin-right: 10px;
+    }
+
+    .update-btn {
+        background: #2874f0;
+        color: white;
+    }
+
+    .update-btn:hover {
+        background: #1557b0;
+    }
+
+    .delete-btn {
+        background: white;
+        color: #e53935;
+        border: 1px solid #e53935;
+    }
+
+    .delete-btn:hover {
+        background: #e53935;
+        color: white;
+    }
+
+    .no-address {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 40px;
+        background: white;
+        text-align: center;
+        border-radius: 4px;
+        color: #777;
+    }
+
+    @media (max-width: 600px) {
+        .address-page {
+            padding: 20px 10px;
+        }
+
+        .address-card {
+            padding: 18px;
+        }
+
+        .address-title {
+            font-size: 20px;
+        }
+
+        .update-btn,
+        .delete-btn {
+            padding: 8px 12px;
+        }
+    }
+</style>
+{% endblock %}
+
+
 {% block context %}
 
+<div class="address-page">
 
-<center>
+    <h2 class="address-title">My Addresses</h2>
+
     {% for i in address %}
-    <div>
-    <h2>{{i.fullname}}</h2>
-    <h2>{{i.mobile}}</h2>
-    <h3>{{i.address_line}}</h3>
-    <h4>{{i.city}}</h4>
-    <h4>{{i.state}}</h4>
-    <h5>{{i.pincode}}</h5>
-    <h6>{{i.created_at}}</h6>
-    <a href="{% url 'update_address' i.id %}">Update</a>
-    <a href="{% url 'delete_address' i.id %}">Delete address</a>
-    </div><br><br>
-    
+
+    <div class="address-card">
+
+        <h2>{{ i.fullname }}</h2>
+
+        <h2>{{ i.mobile }}</h2>
+
+        <h3>{{ i.address_line }}</h3>
+
+        <h4>{{ i.city }}</h4>
+        <h4>{{ i.state }}</h4>
+
+        <h5>PINCODE: {{ i.pincode }}</h5>
+
+        <h6>Added on: {{ i.created_at }}</h6>
+
+        <div class="address-actions">
+
+            <a href="{% url 'update_address' i.id %}"
+               class="update-btn">
+                Update
+            </a>
+
+            <a href="{% url 'delete_address' i.id %}"
+               class="delete-btn">
+                Delete Address
+            </a>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="no-address">
+        <h3>No Address Found</h3>
+        <p>Please add an address to continue.</p>
+    </div>
+
     {% endfor %}
 
-    
-</center>
+</div>
+
 {% endblock %}

@@ -1,0 +1,783 @@
+{% extends 'main.html' %}
+
+{% block links %}
+
+<style>
+
+/* ================================
+   CHECKOUT PAGE - MAIN
+================================ */
+
+.checkout-page {
+    min-height: 100vh;
+    padding: 50px 30px 80px;
+    background: #f5f7fb;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+}
+
+/* Main heading */
+
+.checkout-title {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    color: #222;
+    position: relative;
+}
+
+.checkout-title::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 5px;
+    margin: 12px auto 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #2874f0, #ff9f00);
+}
+
+
+/* ================================
+   MAIN CHECKOUT CONTAINER
+================================ */
+
+.checkout-container {
+    width: 95%;
+    max-width: 1250px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+    text-align: left;
+}
+
+
+/* ================================
+   COMMON CARD
+================================ */
+
+.checkout-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eeeeee;
+    transition: 0.3s ease;
+}
+
+.checkout-card:hover {
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ================================
+   CARD HEADINGS
+================================ */
+
+.card-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-title span {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #2874f0;
+    color: white;
+    font-size: 18px;
+}
+
+
+/* ================================
+   ADDRESS CARD
+================================ */
+
+.address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.address-item {
+    position: relative;
+    border: 2px solid #e2e5ea;
+    border-radius: 15px;
+    padding: 22px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    background: #fff;
+}
+
+.address-item:hover {
+    border-color: #2874f0;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(40, 116, 240, 0.12);
+}
+
+
+/* Radio button */
+
+.address-radio {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+
+    width: 20px;
+    height: 20px;
+
+    cursor: pointer;
+    accent-color: #2874f0;
+}
+
+
+/* Address name */
+
+.address-name {
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0 40px 10px 0;
+    color: #222;
+}
+
+
+/* Address information */
+
+.address-info {
+    margin: 7px 0;
+    color: #555;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* Default badge */
+
+.default-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.not-selected {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #f1f1f1;
+    color: #777;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ================================
+   PRODUCTS
+================================ */
+
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.product-item {
+    display: flex;
+    gap: 20px;
+    padding: 18px;
+    border-radius: 15px;
+    border: 1px solid #eeeeee;
+    background: #fafafa;
+    transition: 0.3s ease;
+}
+
+.product-item:hover {
+    background: #ffffff;
+    transform: translateX(5px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Product image */
+
+.product-image {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: white;
+    padding: 10px;
+    border: 1px solid #eeeeee;
+}
+
+
+/* Product details */
+
+.product-details {
+    flex: 1;
+}
+
+.product-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 5px 0 10px;
+    color: #222;
+}
+
+.product-description {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.product-price {
+    font-size: 17px;
+    font-weight: 700;
+    color: #2874f0;
+}
+
+
+/* ================================
+   RIGHT SIDE ORDER SUMMARY
+================================ */
+
+.order-summary {
+    position: sticky;
+    top: 25px;
+    height: fit-content;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 16px;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    color: #666;
+}
+
+.summary-value {
+    font-weight: 600;
+    color: #222;
+}
+
+
+/* Total */
+
+.total-box {
+    margin-top: 20px;
+    padding: 22px;
+    border-radius: 15px;
+    background: linear-gradient(
+        135deg,
+        #2874f0,
+        #1557c0
+    );
+
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-label {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.total-price {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+
+/* ================================
+   PLACE ORDER BUTTON
+================================ */
+
+.place-order-btn {
+    width: 100%;
+    margin-top: 25px;
+    padding: 18px 25px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #ff9f00,
+        #ff7b00
+    );
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(255, 159, 0, 0.3);
+
+    transition: all 0.3s ease;
+}
+
+.place-order-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 159, 0, 0.4);
+}
+
+.place-order-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* ================================
+   EMPTY SPACE / SECURITY INFO
+================================ */
+
+.secure-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #f1f8ff;
+    border: 1px solid #d5e8ff;
+    text-align: center;
+    color: #2874f0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* ================================
+   ADDRESS SELECTED EFFECT
+================================ */
+
+.address-item:has(input:checked) {
+    border-color: #2874f0;
+    background: #f4f8ff;
+    box-shadow: 0 8px 25px rgba(40, 116, 240, 0.15);
+}
+
+.address-item:has(input:checked)::before {
+    content: "✓ Selected";
+    position: absolute;
+    top: 15px;
+    right: 50px;
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+
+    background: #2874f0;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 1000px) {
+
+    .checkout-container {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .order-summary {
+        position: static;
+    }
+
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 700px) {
+
+    .checkout-page {
+        padding: 30px 15px 60px;
+    }
+
+    .checkout-title {
+        font-size: 32px;
+    }
+
+    .checkout-card {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    .product-item {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .product-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .product-name {
+        font-size: 17px;
+    }
+
+    .product-description {
+        font-size: 13px;
+    }
+
+}
+
+
+/* ================================
+   MOBILE SMALL
+================================ */
+
+@media (max-width: 480px) {
+
+    .checkout-title {
+        font-size: 27px;
+        letter-spacing: 1px;
+    }
+
+    .checkout-card {
+        padding: 15px;
+    }
+
+    .address-item {
+        padding: 17px;
+    }
+
+    .address-name {
+        font-size: 18px;
+    }
+
+    .address-info {
+        font-size: 14px;
+    }
+
+    .product-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .product-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .product-details {
+        width: 100%;
+    }
+
+    .total-box {
+        padding: 18px;
+    }
+
+    .total-label {
+        font-size: 16px;
+    }
+
+    .total-price {
+        font-size: 22px;
+    }
+
+    .place-order-btn {
+        font-size: 16px;
+        padding: 16px;
+    }
+
+}
+
+
+/* ================================
+   ANIMATION
+================================ */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.checkout-card {
+    animation: fadeIn 0.5s ease;
+}
+
+
+/* ================================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2874f0;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1557c0;
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block context %}
+
+<div class="checkout-page">
+
+    <h1 class="checkout-title">CHECK OUT</h1>
+
+    <form method="POST" action="{% url 'placeorder' %}">
+
+        {% csrf_token %}
+
+        <div class="checkout-container">
+
+            <!-- ================= ADDRESS ================= -->
+
+            <div>
+
+                <div class="checkout-card">
+
+                    <h2 class="card-title">
+                        <span>1</span>
+                        Select Delivery Address
+                    </h2>
+
+                    <div class="address-list">
+
+                        {% for i in addresses %}
+
+                        <label class="address-item">
+
+                            <input
+                                class="address-radio"
+                                type="radio"
+                                name="address"
+                                value="{{i.id}}"
+                                {% if i.is_default %}checked{% endif %}
+                            >
+
+                            <h2 class="address-name">
+                                {{i.fullname}}
+                            </h2>
+
+                            <p class="address-info">
+                                📱 {{i.mobile}}
+                            </p>
+
+                            <p class="address-info">
+                                📍 {{i.city}}, {{i.state}}
+                            </p>
+
+                            <p class="address-info">
+                                📮 PINCODE: {{i.pincode}}
+                            </p>
+
+                            {% if i.is_default %}
+
+                                <span class="default-badge">
+                                    ✓ Default Address
+                                </span>
+
+                            {% else %}
+
+                                <span class="not-selected">
+                                    Other Address
+                                </span>
+
+                            {% endif %}
+
+                        </label>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= PRODUCTS ================= -->
+
+                <div class="checkout-card">
+
+                    <h2 class="card-title">
+                        <span>2</span>
+                        Your Products
+                    </h2>
+
+                    <div class="product-list">
+
+                        {% for i in cart_item %}
+
+                        <div class="product-item">
+
+                            <img
+                                class="product-image"
+                                src="{{i.product.pimage.url}}"
+                                alt="{{i.product.pname}}"
+                            >
+
+                            <div class="product-details">
+
+                                <h3 class="product-name">
+                                    {{i.product.pname}}
+                                </h3>
+
+                                <p class="product-description">
+                                    {{i.product.pdescription}}
+                                </p>
+
+                                <div class="product-price">
+                                    ₹{{i.product.price}}
+                                    ×
+                                    {{i.quantity}}
+                                    =
+                                    ₹{{i.total_price}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ORDER SUMMARY ================= -->
+
+            <div class="order-summary">
+
+                <div class="checkout-card">
+
+                    <h2 class="card-title">
+                        <span>3</span>
+                        Order Summary
+                    </h2>
+
+                    {% for i in cart_item %}
+
+                    <div class="summary-row">
+
+                        <span class="summary-label">
+                            {{i.product.pname}}
+                            × {{i.quantity}}
+                        </span>
+
+                        <span class="summary-value">
+                            ₹{{i.total_price}}
+                        </span>
+
+                    </div>
+
+                    {% endfor %}
+
+
+                    <div class="summary-row">
+
+                        <span class="summary-label">
+                            Delivery
+                        </span>
+
+                        <span class="summary-value">
+                            FREE
+                        </span>
+
+                    </div>
+
+
+                    <div class="total-box">
+
+                        <span class="total-label">
+                            TOTAL PRICE
+                        </span>
+
+                        <span class="total-price">
+                            ₹{{total}}
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="place-order-btn"
+                    >
+                        PLACE ORDER
+                    </button>
+
+
+                    <div class="secure-box">
+                        🔒 Your order is safe and secure
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
