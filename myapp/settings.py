@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-r!d*c^gd5ypgw6*^cx@7w#^+p+a43z%a7@9*gv6^n1s01i26_k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = [
+    "miniflipcart-beta.vercel.app",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
@@ -43,6 +48,7 @@ INSTALLED_APPS = [
     'orders'
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,11 +61,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'myapp.urls'
 
-ALLOWED_HOSTS = [
-    "miniflipcart-beta.vercel.app",
-    "localhost",
-    "127.0.0.1",
-]
 
 TEMPLATES = [
     {
