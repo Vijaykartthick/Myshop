@@ -1,0 +1,894 @@
+{% extends 'main.html' %}
+
+{% block links %}
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f1f3f6;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #212121;
+}
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.orders-page {
+    min-height: 100vh;
+    padding: 35px 20px 70px;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.orders-header {
+    max-width: 1200px;
+    margin: auto;
+    margin-bottom: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: white;
+    padding: 22px 28px;
+
+    border-radius: 4px;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.orders-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.orders-count {
+    color: #878787;
+    font-size: 14px;
+}
+
+/* =========================================
+   ORDER CARD
+========================================= */
+
+.order-card {
+    max-width: 1200px;
+    margin: 0 auto 20px;
+
+    background: white;
+
+    border-radius: 4px;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+
+    overflow: hidden;
+
+    transition: 0.25s ease;
+}
+
+.order-card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.16);
+}
+
+/* =========================================
+   ORDER TOP BAR
+========================================= */
+
+.order-top {
+    padding: 18px 25px;
+
+    background: #fafafa;
+
+    border-bottom: 1px solid #eeeeee;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-number {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.order-date {
+    color: #878787;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* =========================================
+   STATUS
+========================================= */
+
+.order-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #26a541;
+}
+
+/* =========================================
+   ORDER CONTENT
+========================================= */
+
+.order-content {
+    padding: 25px;
+}
+
+/* =========================================
+   PRODUCT
+========================================= */
+
+.product-row {
+    display: flex;
+
+    gap: 25px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.product-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* =========================================
+   PRODUCT IMAGE
+========================================= */
+
+.product-image-box {
+    width: 120px;
+    height: 120px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid #eeeeee;
+
+    background: white;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 10px;
+}
+
+/* =========================================
+   PRODUCT DETAILS
+========================================= */
+
+.product-info {
+    flex: 1;
+}
+
+.product-name {
+    margin: 2px 0 10px;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: #212121;
+}
+
+.product-name:hover {
+    color: #2874f0;
+}
+
+.product-meta {
+    color: #878787;
+
+    font-size: 14px;
+
+    margin: 7px 0;
+}
+
+.product-price {
+    margin-top: 12px;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.quantity {
+    color: #555;
+
+    font-size: 14px;
+
+    margin-left: 10px;
+}
+
+/* =========================================
+   PRODUCT SUBTOTAL
+========================================= */
+
+.product-subtotal {
+    width: 150px;
+
+    text-align: right;
+
+    font-size: 16px;
+
+    font-weight: 600;
+}
+
+/* =========================================
+   ORDER BOTTOM
+========================================= */
+
+.order-bottom {
+    padding: 20px 25px;
+
+    border-top: 1px solid #eeeeee;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 25px;
+}
+
+/* =========================================
+   ADDRESS
+========================================= */
+
+.info-box {
+    padding-right: 20px;
+
+    border-right: 1px solid #eeeeee;
+}
+
+.info-title {
+    margin: 0 0 10px;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    color: #878787;
+
+    font-weight: 600;
+}
+
+.info-text {
+    margin: 4px 0;
+
+    font-size: 14px;
+
+    color: #444;
+
+    line-height: 1.5;
+}
+
+/* =========================================
+   TOTAL
+========================================= */
+
+.total-box {
+    padding-left: 10px;
+}
+
+.total-title {
+    margin: 0 0 8px;
+
+    color: #878787;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    font-weight: 600;
+}
+
+.total-price {
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: #212121;
+}
+
+/* =========================================
+   VIEW ORDER BUTTON
+========================================= */
+
+.order-action {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+}
+
+.view-order-btn {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    background: #2874f0;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    border-radius: 2px;
+
+    transition: 0.25s ease;
+}
+
+.view-order-btn:hover {
+    background: #1557c0;
+
+    box-shadow: 0 4px 10px rgba(40,116,240,0.3);
+
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   EMPTY ORDERS
+========================================= */
+
+.empty-orders {
+    max-width: 1200px;
+
+    margin: 50px auto;
+
+    padding: 70px 20px;
+
+    background: white;
+
+    text-align: center;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.empty-icon {
+    width: 90px;
+    height: 90px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background: #f1f3f6;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 40px;
+}
+
+.empty-orders h2 {
+    margin-top: 20px;
+
+    font-size: 22px;
+}
+
+.empty-orders p {
+    color: #878787;
+
+    font-size: 14px;
+}
+
+/* =========================================
+   STATUS COLORS
+========================================= */
+
+.status-pending {
+    color: #ff9800;
+}
+
+.status-confirmed {
+    color: #2874f0;
+}
+
+.status-shipped {
+    color: #7b1fa2;
+}
+
+.status-delivered {
+    color: #26a541;
+}
+
+.status-cancelled {
+    color: #d32f2f;
+}
+
+/* =========================================
+   STATUS DOT COLORS
+========================================= */
+
+.status-pending .status-dot {
+    background: #ff9800;
+}
+
+.status-confirmed .status-dot {
+    background: #2874f0;
+}
+
+.status-shipped .status-dot {
+    background: #7b1fa2;
+}
+
+.status-delivered .status-dot {
+    background: #26a541;
+}
+
+.status-cancelled .status-dot {
+    background: #d32f2f;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .order-bottom {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .order-action {
+        justify-content: flex-start;
+    }
+
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+    .orders-page {
+        padding: 20px 12px 50px;
+    }
+
+    .orders-header {
+        padding: 18px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .orders-title {
+        font-size: 23px;
+    }
+
+    .order-top {
+        padding: 15px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .order-content {
+        padding: 18px;
+    }
+
+    .product-row {
+        gap: 15px;
+    }
+
+    .product-image-box {
+        width: 95px;
+        height: 95px;
+    }
+
+    .product-name {
+        font-size: 15px;
+    }
+
+    .product-subtotal {
+        width: auto;
+
+        text-align: left;
+    }
+
+    .order-bottom {
+        padding: 18px;
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .info-box {
+        border-right: none;
+
+        border-bottom: 1px solid #eeeeee;
+
+        padding-bottom: 15px;
+
+        padding-right: 0;
+    }
+
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .orders-page {
+        padding: 12px 8px 40px;
+    }
+
+    .orders-header {
+        margin-bottom: 12px;
+    }
+
+    .orders-title {
+        font-size: 20px;
+    }
+
+    .order-card {
+        margin-bottom: 12px;
+    }
+
+    .order-content {
+        padding: 14px;
+    }
+
+    .product-row {
+        flex-wrap: wrap;
+    }
+
+    .product-image-box {
+        width: 85px;
+        height: 85px;
+    }
+
+    .product-info {
+        min-width: calc(100% - 110px);
+    }
+
+    .product-subtotal {
+        width: 100%;
+
+        padding-left: 100px;
+
+        margin-top: -10px;
+    }
+
+    .product-name {
+        font-size: 14px;
+    }
+
+    .product-meta {
+        font-size: 12px;
+    }
+
+    .product-price {
+        font-size: 15px;
+    }
+
+    .total-price {
+        font-size: 21px;
+    }
+
+    .view-order-btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+.order-card {
+    animation: orderFade 0.4s ease;
+}
+
+@keyframes orderFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block context %}
+
+<div class="orders-page">
+
+    <!-- HEADER -->
+
+    <div class="orders-header">
+
+        <div>
+            <h1 class="orders-title">
+                My Orders
+            </h1>
+
+            <div class="orders-count">
+                Your recent orders and purchases
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ORDERS -->
+
+    {% for i in products %}
+
+    <div class="order-card">
+
+        <!-- ORDER HEADER -->
+
+        <div class="order-top">
+
+            <div>
+
+                <div class="order-number">
+                    Order #{{ i.id }}
+                </div>
+
+                <div class="order-date">
+                    {{ i.create_at|date:"d M Y, h:i A" }}
+                </div>
+
+            </div>
+
+
+            <div class="order-status
+                {% if i.status == 'Pending' %}
+                    status-pending
+                {% elif i.status == 'Confirmed' %}
+                    status-confirmed
+                {% elif i.status == 'Shipped' %}
+                    status-shipped
+                {% elif i.status == 'Delivered' %}
+                    status-delivered
+                {% elif i.status == 'Cancelled' %}
+                    status-cancelled
+                {% endif %}
+            ">
+
+                <span class="status-dot"></span>
+
+                {{ i.status }}
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div class="order-content">
+
+            {% for item in i.items.all %}
+
+            <div class="product-row">
+
+                <div class="product-image-box">
+
+                    {% if item.product.pimage %}
+
+                    <img
+                        src="{{ item.product.pimage.url }}"
+                        class="product-image"
+                        alt="{{ item.product.pname }}"
+                    >
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <h3 class="product-name">
+
+                        {{ item.product.pname }}
+
+                    </h3>
+
+                    <p class="product-meta">
+
+                        {{ item.product.pdescription|truncatechars:100 }}
+
+                    </p>
+
+                    <div class="product-price">
+
+                        ₹{{ item.price }}
+
+                        <span class="quantity">
+
+                            × {{ item.quantity }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product-subtotal">
+
+                    ₹{{ item.subtotal }}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ORDER FOOTER -->
+
+        <div class="order-bottom">
+
+
+            <!-- ADDRESS -->
+
+            <div class="info-box">
+
+                <h4 class="info-title">
+
+                    Delivery Address
+
+                </h4>
+
+                <p class="info-text">
+
+                    <strong>
+                        {{ i.addresss.fullname }}
+                    </strong>
+
+                </p>
+
+                <p class="info-text">
+
+                    {{ i.addresss.mobile }}
+
+                </p>
+
+                <p class="info-text">
+
+                    {{ i.addresss.address_line }}
+
+                </p>
+
+                <p class="info-text">
+
+                    {{ i.addresss.city }},
+                    {{ i.addresss.state }}
+                    - {{ i.addresss.pincode }}
+
+                </p>
+
+            </div>
+
+
+            <!-- TOTAL -->
+
+            <div class="total-box">
+
+                <h4 class="total-title">
+
+                    Total Amount
+
+                </h4>
+
+                <div class="total-price">
+
+                    ₹{{ i.total_amount }}
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTION -->
+
+            <div class="order-action">
+
+                <a
+                    href="{% url 'order_succfully' i.id %}"
+                    class="view-order-btn"
+                >
+
+                    View Order
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    {% empty %}
+
+    <!-- EMPTY -->
+
+    <div class="empty-orders">
+
+        <div class="empty-icon">
+            🛒
+        </div>
+
+        <h2>
+            No Orders Yet
+        </h2>
+
+        <p>
+            You haven't placed any orders yet.
+        </p>
+
+    </div>
+    
+
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

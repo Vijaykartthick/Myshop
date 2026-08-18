@@ -5,6 +5,7 @@ from orders.models import address
 from django.contrib.auth.decorators import login_required
 from cart.models import Cart
 from .models import place_order,orderItem
+from django.contrib.auth.models import User
 
 
 def add_cart(request, pk):
@@ -131,11 +132,25 @@ def placeorder(request):
 
     return redirect('checkout')
 
-def order_succfrully(request,pk):
-    order_products = place_order.objects.get(id=pk)
-    
-    return render(request,'order_succfully.html',{'orders':order_products,'products':products})
+@login_required(login_url='login_')
+def order_succfrully(request, pk):
+    order_products = get_object_or_404(place_order,id=pk,user=request.user)
+    products = order_products.items.all()
+    return render(request,'order_succfully.html',{'orders': order_products,'products': products}
+    )
 
 def viewdetails(request):
-    return redirect('checkout')
+    return redirect('order')
 
+def continew(request):
+    return redirect('home')
+
+
+def order(request):
+    products = place_order.objects.filter(user=request.user).order_by('-create_at')
+    return render(request,'order.html',{'products':products})
+
+def delete(request,pk):
+    deleteed = place_order.objects.get(id = pk)
+    deleteed.delete()
+    return redirect('order')

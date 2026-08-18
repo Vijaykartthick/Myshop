@@ -12,5 +12,8 @@ urlpatterns = [
     path('checkout/',checkout,name='checkout'),
     path('placeorder/',placeorder,name='placeorder'),
     path('ordersuccess/<int:pk>',order_succfrully,name='order_succfully'),
-    path('viewdetails/',viewdetails,name='viewdetails')
+    path('viewdetails/',viewdetails,name='viewdetails'),
+    path('continew/',continew,name='continew'),
+    path('order/',order,name='order'),
+    path('delete/<int:pk>',delete,name='delete')
 ]
