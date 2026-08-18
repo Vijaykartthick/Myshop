@@ -55,6 +55,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'myapp.urls'
 
+ALLOWED_HOSTS = [
+    "miniflipcart-beta.vercel.app",
+    "localhost",
+    "127.0.0.1",
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
