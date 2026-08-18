@@ -255,7 +255,6 @@
                 </a>
             </li>
 
-            <li><a href="{% url 'add_address' %}">Address</a></li>
 
             <li>
                 <a href="{% url 'cart' %}">
@@ -268,20 +267,6 @@
             </li>
 
             
-            
-
-            <li>
-                <a href="{% url 'logout_' %}" class="logout">
-                    Logout
-                </a>
-            </li>
-
-        
-            <li>
-                <a href="">
-                    Contact Us
-                </a>
-            </li>
 
             <li>
                 <a href="{% url 'login_' %}">
@@ -294,6 +279,21 @@
                     Register
                 </a>
             </li>
+              
+
+            <li>
+                <a href="{% url 'logout_' %}" class="logout">
+                    Logout
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    Contact Us
+                </a>
+            </li>
+
+            
 
                 <li><a href="{% url 'profile' %}"> 
                 {% with pname=request.user.profilepic_set.first %}
@@ -304,8 +304,9 @@
           
                     
           
-        {% endwith %}
-    </a></li>
+                {% endwith %}
+                </a></li>
+
 
             
 

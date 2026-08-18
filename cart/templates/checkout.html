@@ -4,10 +4,6 @@
 
 <style>
 
-/* ================================
-   CHECKOUT PAGE - MAIN
-================================ */
-
 .checkout-page {
     min-height: 100vh;
     padding: 50px 30px 80px;
@@ -15,8 +11,6 @@
     font-family: Arial, Helvetica, sans-serif;
     color: #222;
 }
-
-/* Main heading */
 
 .checkout-title {
     font-size: 42px;
@@ -37,11 +31,6 @@
     background: linear-gradient(90deg, #2874f0, #ff9f00);
 }
 
-
-/* ================================
-   MAIN CHECKOUT CONTAINER
-================================ */
-
 .checkout-container {
     width: 95%;
     max-width: 1250px;
@@ -51,11 +40,6 @@
     gap: 30px;
     text-align: left;
 }
-
-
-/* ================================
-   COMMON CARD
-================================ */
 
 .checkout-card {
     background: #ffffff;
@@ -70,11 +54,6 @@
 .checkout-card:hover {
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
 }
-
-
-/* ================================
-   CARD HEADINGS
-================================ */
 
 .card-title {
     font-size: 24px;
@@ -97,11 +76,6 @@
     color: white;
     font-size: 18px;
 }
-
-
-/* ================================
-   ADDRESS CARD
-================================ */
 
 .address-list {
     display: flex;
@@ -126,8 +100,6 @@
 }
 
 
-/* Radio button */
-
 .address-radio {
     position: absolute;
     top: 22px;
@@ -140,9 +112,6 @@
     accent-color: #2874f0;
 }
 
-
-/* Address name */
-
 .address-name {
     font-size: 21px;
     font-weight: 700;
@@ -151,8 +120,6 @@
 }
 
 
-/* Address information */
-
 .address-info {
     margin: 7px 0;
     color: #555;
@@ -160,8 +127,6 @@
     line-height: 1.5;
 }
 
-
-/* Default badge */
 
 .default-badge {
     display: inline-block;
@@ -185,11 +150,6 @@
     font-weight: 600;
 }
 
-
-/* ================================
-   PRODUCTS
-================================ */
-
 .product-list {
     display: flex;
     flex-direction: column;
@@ -212,9 +172,6 @@
     box-shadow: 0 7px 20px rgba(0, 0, 0, 0.08);
 }
 
-
-/* Product image */
-
 .product-image {
     width: 140px;
     height: 140px;
@@ -224,9 +181,6 @@
     padding: 10px;
     border: 1px solid #eeeeee;
 }
-
-
-/* Product details */
 
 .product-details {
     flex: 1;
@@ -252,10 +206,6 @@
     color: #2874f0;
 }
 
-
-/* ================================
-   RIGHT SIDE ORDER SUMMARY
-================================ */
 
 .order-summary {
     position: sticky;
@@ -286,7 +236,6 @@
 }
 
 
-/* Total */
 
 .total-box {
     margin-top: 20px;
@@ -314,11 +263,6 @@
     font-size: 28px;
     font-weight: 800;
 }
-
-
-/* ================================
-   PLACE ORDER BUTTON
-================================ */
 
 .place-order-btn {
     width: 100%;
@@ -356,11 +300,6 @@
     transform: scale(0.98);
 }
 
-
-/* ================================
-   EMPTY SPACE / SECURITY INFO
-================================ */
-
 .secure-box {
     margin-top: 20px;
     padding: 15px;
@@ -372,11 +311,6 @@
     font-size: 14px;
     font-weight: 600;
 }
-
-
-/* ================================
-   ADDRESS SELECTED EFFECT
-================================ */
 
 .address-item:has(input:checked) {
     border-color: #2874f0;
@@ -401,11 +335,6 @@
     font-weight: 700;
 }
 
-
-/* ================================
-   MOBILE
-================================ */
-
 @media (max-width: 1000px) {
 
     .checkout-container {
@@ -418,11 +347,6 @@
     }
 
 }
-
-
-/* ================================
-   TABLET
-================================ */
 
 @media (max-width: 700px) {
 
@@ -462,11 +386,6 @@
     }
 
 }
-
-
-/* ================================
-   MOBILE SMALL
-================================ */
 
 @media (max-width: 480px) {
 
@@ -525,11 +444,6 @@
 
 }
 
-
-/* ================================
-   ANIMATION
-================================ */
-
 @keyframes fadeIn {
 
     from {
@@ -547,11 +461,6 @@
 .checkout-card {
     animation: fadeIn 0.5s ease;
 }
-
-
-/* ================================
-   SCROLLBAR
-================================ */
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -586,8 +495,6 @@
         {% csrf_token %}
 
         <div class="checkout-container">
-
-            <!-- ================= ADDRESS ================= -->
 
             <div>
 
@@ -651,8 +558,6 @@
                 </div>
 
 
-                <!-- ================= PRODUCTS ================= -->
-
                 <div class="checkout-card">
 
                     <h2 class="card-title">
@@ -701,9 +606,6 @@
                 </div>
 
             </div>
-
-
-            <!-- ================= ORDER SUMMARY ================= -->
 
             <div class="order-summary">
 

@@ -15,18 +15,10 @@ body {
     color: #212121;
 }
 
-/* =========================================
-   MAIN PAGE
-========================================= */
-
 .orders-page {
     min-height: 100vh;
     padding: 35px 20px 70px;
 }
-
-/* =========================================
-   HEADER
-========================================= */
 
 .orders-header {
     max-width: 1200px;
@@ -56,10 +48,6 @@ body {
     font-size: 14px;
 }
 
-/* =========================================
-   ORDER CARD
-========================================= */
-
 .order-card {
     max-width: 1200px;
     margin: 0 auto 20px;
@@ -78,10 +66,6 @@ body {
 .order-card:hover {
     box-shadow: 0 4px 15px rgba(0,0,0,0.16);
 }
-
-/* =========================================
-   ORDER TOP BAR
-========================================= */
 
 .order-top {
     padding: 18px 25px;
@@ -106,10 +90,6 @@ body {
     margin-top: 5px;
 }
 
-/* =========================================
-   STATUS
-========================================= */
-
 .order-status {
     display: flex;
     align-items: center;
@@ -128,17 +108,9 @@ body {
     background: #26a541;
 }
 
-/* =========================================
-   ORDER CONTENT
-========================================= */
-
 .order-content {
     padding: 25px;
 }
-
-/* =========================================
-   PRODUCT
-========================================= */
 
 .product-row {
     display: flex;
@@ -154,10 +126,6 @@ body {
     border-bottom: none;
     padding-bottom: 0;
 }
-
-/* =========================================
-   PRODUCT IMAGE
-========================================= */
 
 .product-image-box {
     width: 120px;
@@ -182,10 +150,6 @@ body {
 
     padding: 10px;
 }
-
-/* =========================================
-   PRODUCT DETAILS
-========================================= */
 
 .product-info {
     flex: 1;
@@ -229,10 +193,6 @@ body {
     margin-left: 10px;
 }
 
-/* =========================================
-   PRODUCT SUBTOTAL
-========================================= */
-
 .product-subtotal {
     width: 150px;
 
@@ -242,10 +202,6 @@ body {
 
     font-weight: 600;
 }
-
-/* =========================================
-   ORDER BOTTOM
-========================================= */
 
 .order-bottom {
     padding: 20px 25px;
@@ -258,10 +214,6 @@ body {
 
     gap: 25px;
 }
-
-/* =========================================
-   ADDRESS
-========================================= */
 
 .info-box {
     padding-right: 20px;
@@ -291,10 +243,6 @@ body {
     line-height: 1.5;
 }
 
-/* =========================================
-   TOTAL
-========================================= */
-
 .total-box {
     padding-left: 10px;
 }
@@ -318,10 +266,6 @@ body {
 
     color: #212121;
 }
-
-/* =========================================
-   VIEW ORDER BUTTON
-========================================= */
 
 .order-action {
     display: flex;
@@ -358,10 +302,6 @@ body {
 
     transform: translateY(-2px);
 }
-
-/* =========================================
-   EMPTY ORDERS
-========================================= */
 
 .empty-orders {
     max-width: 1200px;
@@ -408,10 +348,6 @@ body {
     font-size: 14px;
 }
 
-/* =========================================
-   STATUS COLORS
-========================================= */
-
 .status-pending {
     color: #ff9800;
 }
@@ -431,10 +367,6 @@ body {
 .status-cancelled {
     color: #d32f2f;
 }
-
-/* =========================================
-   STATUS DOT COLORS
-========================================= */
 
 .status-pending .status-dot {
     background: #ff9800;
@@ -456,10 +388,6 @@ body {
     background: #d32f2f;
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
-
 @media (max-width: 900px) {
 
     .order-bottom {
@@ -472,9 +400,6 @@ body {
 
 }
 
-/* =========================================
-   TABLET
-========================================= */
 
 @media (max-width: 700px) {
 
@@ -549,10 +474,6 @@ body {
 
 }
 
-/* =========================================
-   MOBILE
-========================================= */
-
 @media (max-width: 480px) {
 
     .orders-page {
@@ -620,10 +541,6 @@ body {
 
 }
 
-/* =========================================
-   ANIMATION
-========================================= */
-
 .order-card {
     animation: orderFade 0.4s ease;
 }
@@ -651,7 +568,7 @@ body {
 
 <div class="orders-page">
 
-    <!-- HEADER -->
+
 
     <div class="orders-header">
 
@@ -668,13 +585,11 @@ body {
     </div>
 
 
-    <!-- ORDERS -->
+
 
     {% for i in products %}
 
     <div class="order-card">
-
-        <!-- ORDER HEADER -->
 
         <div class="order-top">
 
@@ -712,9 +627,6 @@ body {
             </div>
 
         </div>
-
-
-        <!-- PRODUCTS -->
 
         <div class="order-content">
 
@@ -778,13 +690,7 @@ body {
 
         </div>
 
-
-        <!-- ORDER FOOTER -->
-
         <div class="order-bottom">
-
-
-            <!-- ADDRESS -->
 
             <div class="info-box">
 
@@ -824,9 +730,6 @@ body {
 
             </div>
 
-
-            <!-- TOTAL -->
-
             <div class="total-box">
 
                 <h4 class="total-title">
@@ -843,8 +746,6 @@ body {
 
             </div>
 
-
-            <!-- ACTION -->
 
             <div class="order-action">
 
@@ -866,8 +767,6 @@ body {
 
 
     {% empty %}
-
-    <!-- EMPTY -->
 
     <div class="empty-orders">
 

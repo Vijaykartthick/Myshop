@@ -3,10 +3,6 @@
 {% block links %}
 
 <style>
-    /* ==============================
-       PAGE BACKGROUND
-    ============================== */
-
     body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
@@ -17,12 +13,6 @@
         min-height: 90vh;
         padding: 50px 20px;
     }
-
-
-    /* ==============================
-       MAIN CARD
-    ============================== */
-
     .address-container {
         width: 600px;
         max-width: 95%;
@@ -32,11 +22,6 @@
         border-radius: 6px;
         box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
     }
-
-
-    /* ==============================
-       TITLE
-    ============================== */
 
     .address-title {
         text-align: center;
@@ -56,11 +41,6 @@
         font-size: 14px;
     }
 
-
-    /* ==============================
-       DJANGO FORM
-    ============================== */
-
     .address-form p {
         margin: 0 0 20px;
     }
@@ -72,11 +52,6 @@
         font-weight: 600;
         color: #333;
     }
-
-
-    /* ==============================
-       INPUTS
-    ============================== */
 
     .address-form input,
     .address-form textarea,
@@ -99,7 +74,7 @@
     }
 
 
-    /* TEXTAREA */
+
 
     .address-form textarea {
         min-height: 100px;
@@ -107,21 +82,11 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
-
-    /* ==============================
-       INPUT HOVER
-    ============================== */
-
     .address-form input:hover,
     .address-form textarea:hover,
     .address-form select:hover {
         border-color: #999;
     }
-
-
-    /* ==============================
-       INPUT FOCUS
-    ============================== */
 
     .address-form input:focus,
     .address-form textarea:focus,
@@ -135,19 +100,11 @@
     }
 
 
-    /* ==============================
-       PLACEHOLDER
-    ============================== */
-
     .address-form input::placeholder,
     .address-form textarea::placeholder {
         color: #999;
     }
 
-
-    /* ==============================
-       HELP TEXT
-    ============================== */
 
     .address-form .helptext {
         display: block;
@@ -158,10 +115,6 @@
     }
 
 
-    /* ==============================
-       ERROR MESSAGE
-    ============================== */
-
     .address-form .errorlist {
         margin: 5px 0;
         padding: 0;
@@ -171,11 +124,6 @@
         color: #e53935;
         font-size: 13px;
     }
-
-
-    /* ==============================
-       SUBMIT BUTTON
-    ============================== */
 
     .submit-btn {
         width: 100%;
@@ -214,10 +162,6 @@
     }
 
 
-    /* ==============================
-       BACK BUTTON
-    ============================== */
-
     .back-btn {
         display: block;
 
@@ -236,21 +180,9 @@
     .back-btn:hover {
         text-decoration: underline;
     }
-
-
-    /* ==============================
-       REQUIRED STAR
-    ============================== */
-
     .address-form label::after {
         color: #e53935;
     }
-
-
-    /* ==============================
-       RESPONSIVE
-    ============================== */
-
     @media (max-width: 700px) {
 
         .update-address-page {
@@ -276,12 +208,7 @@
             padding: 13px;
         }
     }
-
-
-    /* ==============================
-       SMALL MOBILE
-    ============================== */
-
+    
     @media (max-width: 400px) {
 
         .address-container {

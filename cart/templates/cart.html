@@ -510,9 +510,6 @@
 
             <div class="cart-product">
 
-
-                <!-- PRODUCT IMAGE -->
-
                 <div class="product-image">
 
                     {% if i.product.pimage %}
@@ -522,9 +519,6 @@
                     {% endif %}
 
                 </div>
-
-
-               
 
                 <div class="product-details">
                     <h3>{{ i.product.pname }}</h3>
@@ -540,39 +534,19 @@
                             {{ i.quantity }}
                         </span>
 
-                        <a href="{% url 'plus' i.id %}">
-                            +
-                        </a>
+                        <a href="{% url 'plus' i.id %}">+</a>
 
                     </div>
-
-
-
-                    <a class="remove-btn"
-                       href="{% url 'removee' i.id %}">
-
-                        Remove
-
-                    </a>
-
+                    <a class="remove-btn" href="{% url 'removee' i.id %}">Remove</a>
                 </div>
-
-
-        
 
                 <div class="product-total">
 
-                    <small>
-                        Item Total
-                    </small>
+                    <small>Item Total</small>
 
-                    <strong>
-                        ₹{{ i.total_price }}
-                    </strong>
+                    <strong>₹{{ i.total_price }}</strong>
 
-                    <div class="delivery">
-                        ✓ Free Delivery
-                    </div>
+                    <div class="delivery">✓ Free Delivery</div>
 
                 </div>
 

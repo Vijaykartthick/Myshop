@@ -15,50 +15,32 @@ body {
     color: #212121;
 }
 
-/* =====================================
-   MAIN
-===================================== */
 
 .success-page {
     min-height: 100vh;
     padding: 35px 20px 70px;
 }
 
-/* =====================================
-   SUCCESS HEADER
-===================================== */
-
 .success-header {
     max-width: 1100px;
     margin: 0 auto 20px;
-
     background: #fff;
-
     padding: 30px;
-
     text-align: center;
-
     border-radius: 4px;
-
     box-shadow: 0 1px 4px rgba(0,0,0,0.12);
 }
 
 .success-icon {
     width: 70px;
     height: 70px;
-
     margin: 0 auto 15px;
-
     border-radius: 50%;
-
     background: #26a541;
-
     color: white;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 35px;
     font-weight: bold;
 }
@@ -78,10 +60,6 @@ body {
 
     font-size: 14px;
 }
-
-/* =====================================
-   ORDER STATUS
-===================================== */
 
 .status-container {
     max-width: 1100px;
@@ -153,11 +131,6 @@ body {
 .order-id strong {
     font-size: 17px;
 }
-
-/* =====================================
-   ADDRESS + PRODUCTS LAYOUT
-===================================== */
-
 .success-container {
     max-width: 1100px;
 
@@ -171,10 +144,6 @@ body {
 
     align-items: start;
 }
-
-/* =====================================
-   COMMON CARD
-===================================== */
 
 .success-card {
     background: white;
@@ -199,10 +168,6 @@ body {
 .card-body {
     padding: 22px;
 }
-
-/* =====================================
-   ADDRESS
-===================================== */
 
 .address-name {
     font-size: 17px;
@@ -250,10 +215,6 @@ body {
     text-transform: uppercase;
 }
 
-/* =====================================
-   PRODUCTS
-===================================== */
-
 .product-list {
     display: flex;
 
@@ -279,10 +240,6 @@ body {
 .product-item:hover {
     background: #fafafa;
 }
-
-/* =====================================
-   IMAGE
-===================================== */
 
 .product-image-box {
     width: 150px;
@@ -312,9 +269,6 @@ body {
     padding: 10px;
 }
 
-/* =====================================
-   PRODUCT DETAILS
-===================================== */
 
 .product-details {
     flex: 1;
@@ -357,10 +311,6 @@ body {
 
     font-size: 14px;
 }
-
-/* =====================================
-   TOTAL
-===================================== */
 
 .total-section {
     padding: 20px 22px;
@@ -415,10 +365,6 @@ body {
 
     font-weight: 700;
 }
-
-/* =====================================
-   BUTTONS
-===================================== */
 
 .action-section {
     max-width: 1100px;
@@ -482,10 +428,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* =====================================
-   DELIVERY INFO
-===================================== */
-
 .delivery-info {
     margin-top: 20px;
 
@@ -504,10 +446,6 @@ body {
     border-radius: 3px;
 }
 
-/* =====================================
-   MOBILE
-===================================== */
-
 @media (max-width: 850px) {
 
     .success-container {
@@ -515,10 +453,6 @@ body {
     }
 
 }
-
-/* =====================================
-   TABLET
-===================================== */
 
 @media (max-width: 600px) {
 
@@ -573,10 +507,6 @@ body {
 
 }
 
-/* =====================================
-   SMALL MOBILE
-===================================== */
-
 @media (max-width: 450px) {
 
     .product-item {
@@ -608,10 +538,6 @@ body {
 
 }
 
-/* =====================================
-   ANIMATION
-===================================== */
-
 .success-header,
 .status-container,
 .success-card {
@@ -642,10 +568,6 @@ body {
 <div class="success-page">
 
 
-    <!-- ==============================
-         SUCCESS HEADER
-    =============================== -->
-
     <div class="success-header">
 
         <div class="success-icon">
@@ -662,11 +584,6 @@ body {
         </p>
 
     </div>
-
-
-    <!-- ==============================
-         STATUS
-    =============================== -->
 
     <div class="status-container">
 
@@ -701,17 +618,7 @@ body {
 
     </div>
 
-
-    <!-- ==============================
-         MAIN CONTENT
-    =============================== -->
-
     <div class="success-container">
-
-
-        <!-- ==========================
-             ADDRESS CARD
-        =========================== -->
 
         <div class="success-card">
 
@@ -756,11 +663,6 @@ body {
 
         </div>
 
-
-        <!-- ==========================
-             PRODUCTS CARD
-        =========================== -->
-
         <div class="success-card">
 
             <div class="card-header">
@@ -776,9 +678,6 @@ body {
 
                 <div class="product-item">
 
-
-                    <!-- PRODUCT IMAGE -->
-
                     <div class="product-image-box">
 
                         {% if i.product.pimage %}
@@ -793,8 +692,6 @@ body {
 
                     </div>
 
-
-                    <!-- PRODUCT DETAILS -->
 
                     <div class="product-details">
 
@@ -838,9 +735,6 @@ body {
 
             </div>
 
-
-            <!-- TOTAL -->
-
             <div class="total-section">
 
                 <div class="total-row">
@@ -874,22 +768,12 @@ body {
 
     </div>
 
-
-    <!-- ==============================
-         DELIVERY INFO
-    =============================== -->
-
     <div class="delivery-info">
 
         🔒 Your order is safe and secure.
         You can track your order from the Orders section.
 
     </div>
-
-
-    <!-- ==============================
-         ACTION BUTTONS
-    =============================== -->
 
     <div class="action-section">
 
